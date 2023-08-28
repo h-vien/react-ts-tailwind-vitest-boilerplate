@@ -17,3 +17,8 @@ export type Nameable = {
   name?: string
   full_name?: string
 }
+
+export interface SelectOption {
+  label: string
+  value: number
+}
