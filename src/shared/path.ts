@@ -9,14 +9,14 @@ const PATH_URL = {
 export const PRIVATE_ROUTE: Route[] = [
   {
     path: '',
-    element: () => import('src/pages/Home')
+    element: () => import('src/pages/home')
   }
 ]
 
 export const DEFAULT_ROUTE: Route[] = [
   {
     path: '',
-    element: () => import('src/pages/Home')
+    element: () => import('src/pages/home')
   }
 ]
 

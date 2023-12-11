@@ -5,7 +5,7 @@ import { DEFAULT_ROUTE, PRIVATE_ROUTE } from './shared/path'
 import { Row, Spin } from 'antd'
 import { Suspense, lazy } from 'react'
 import { Route } from './interface/app'
-import NotFoundPage from './pages/NotFoundPage'
+import NotFoundPage from './pages/not-found'
 import PrivateRoute from './routes/PrivateRoutes'
 import DefaultRoute from './routes/DefaultRoutes'
 
