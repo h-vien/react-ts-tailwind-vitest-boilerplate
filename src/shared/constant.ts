@@ -2,7 +2,7 @@ import { SolutionOutlined, TeamOutlined } from '@ant-design/icons'
 
 export const SECONDS_IN_DAY = 86400
 
-export const SIZEBAR_OPTIONS = [
+export const SIDEBAR_OPTIONS = [
   {
     key: 'learn',
     label: 'Learn',

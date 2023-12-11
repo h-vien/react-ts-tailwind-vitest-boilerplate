@@ -2,7 +2,7 @@ import { Layout, Menu, MenuRef } from 'antd'
 import { useEffect, useRef, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { ReactWithChild } from 'src/interface/app'
-import { SIZEBAR_OPTIONS } from 'src/shared/constant'
+import { SIDEBAR_OPTIONS } from 'src/shared/constant'
 import { useResponsive } from 'src/shared/hook'
 
 export default function PrivateLayout({ children }: ReactWithChild) {
@@ -11,7 +11,7 @@ export default function PrivateLayout({ children }: ReactWithChild) {
 
   const [isCollapsed, setIsCollapsed] = useState(false)
   const [selectedKey, setSelectedKey] = useState<string>(
-    (SIZEBAR_OPTIONS.find((_item) => location.pathname.startsWith(_item.path))?.key as string) || 'members'
+    (SIDEBAR_OPTIONS.find((_item) => location.pathname.startsWith(_item.path))?.key as string) || 'members'
   )
 
   useEffect(() => {
@@ -19,7 +19,7 @@ export default function PrivateLayout({ children }: ReactWithChild) {
   }, [isDesktop])
 
   useEffect(() => {
-    const key = SIZEBAR_OPTIONS.find((_item) => location.pathname.startsWith(_item.path))?.key as string
+    const key = SIDEBAR_OPTIONS.find((_item) => location.pathname.startsWith(_item.path))?.key as string
     if (key) setSelectedKey(key)
   }, [location])
 
@@ -43,7 +43,7 @@ export default function PrivateLayout({ children }: ReactWithChild) {
             defaultSelectedKeys={['members']}
             selectedKeys={[selectedKey]}
             style={{ height: '100%', borderRight: 0 }}
-            items={SIZEBAR_OPTIONS.map((item) => ({
+            items={SIDEBAR_OPTIONS.map((item) => ({
               ...item,
               label: <Link to={item.path}>{item.label}</Link>,
               icon: <item.icon />
