@@ -42,6 +42,7 @@ const useResponsive = () => {
       // remove the event
       window.removeEventListener('resize', debouncedCall, false)
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return state

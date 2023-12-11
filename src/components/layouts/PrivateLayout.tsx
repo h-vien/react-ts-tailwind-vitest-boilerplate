@@ -43,7 +43,7 @@ export default function PrivateLayout({ children }: ReactWithChild) {
             defaultSelectedKeys={['members']}
             selectedKeys={[selectedKey]}
             style={{ height: '100%', borderRight: 0 }}
-            items={SIZEBAR_OPTIONS.map((item, index) => ({
+            items={SIZEBAR_OPTIONS.map((item) => ({
               ...item,
               label: <Link to={item.path}>{item.label}</Link>,
               icon: <item.icon />

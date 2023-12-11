@@ -1,7 +1,6 @@
 import type { ModalFuncProps, TableProps } from 'antd'
-import { Button, Card, Row, Space, Table } from 'antd'
+import { Button, Card, Pagination, Row, Space, Table } from 'antd'
 import type { ColumnsType, ColumnType } from 'antd/lib/table'
-import type { TableLayout } from 'rc-table/lib/interface'
 import type { ReactNode } from 'react'
 import ConfirmModal from './ConfirmModal'
 import { isBoolean } from 'lodash'
@@ -13,6 +12,7 @@ interface Props<RecordType> {
   columns: ColumnsType<RecordType>
   onCreate?: () => void
   onEdit?: (row: RecordType) => void
+  onPaginationChange?: (page: number) => void
   onDelete?: (id: string | number) => void
   exportExcelBtn?: React.ReactNode
   onRow?: (data: RecordType, index?: number) => React.HTMLAttributes<HTMLElement>
@@ -20,12 +20,10 @@ interface Props<RecordType> {
   actions?: ColumnType<RecordType> | boolean
   pageSize?: number
   currentPage?: number
-  onChange?: ({ page, pageSize }: { page: number; pageSize: number }) => void
   deleteAction?: ModalFuncProps
   total?: number
   extraLeft?: ReactNode
   rowClassName?: (record: RecordType, index: number) => string
-  tableLayout?: TableLayout
   scroll?: { x?: number; y?: number }
   actionTitle?: string
   actionColumnProps?: ColumnType<RecordType>
@@ -34,6 +32,8 @@ interface Props<RecordType> {
 function CustomTable<RecordType extends Dictionary<unknown>>({
   dataSource,
   columns,
+  total,
+  onPaginationChange,
   loading,
   pageSize = 10,
   currentPage = 1,
@@ -43,7 +43,6 @@ function CustomTable<RecordType extends Dictionary<unknown>>({
   onEdit,
   primaryKey,
   actions = true,
-  onChange,
   onRow,
   extraLeft,
   deleteAction,
@@ -53,7 +52,7 @@ function CustomTable<RecordType extends Dictionary<unknown>>({
   actionTitle,
   actionColumnProps = {},
   ...props
-}: Omit<TableProps<RecordType>, 'onChange'> & Props<RecordType>) {
+}: TableProps<RecordType> & Props<RecordType>) {
   const newColumns = [...columns]
   if (actions) {
     if (isBoolean(actions)) {
@@ -105,14 +104,11 @@ function CustomTable<RecordType extends Dictionary<unknown>>({
         tableLayout={tableLayout}
         {...props}
       />
+      <Pagination current={currentPage || 1} onChange={onPaginationChange} pageSize={pageSize} total={total} />
     </Card>
   )
 }
 
-//TODO: làm sau :(
-{
-  /* <Pagination currentPage={currentPage} onChange={onChange} pageSize={pageSize} total={total} /> */
-}
 CustomTable.defaultProps = {
   primaryKey: 'id'
 }
