@@ -1,5 +1,4 @@
 import { UploadProps } from 'antd'
-import { ReactNode } from 'react'
 
 export interface ReactWithChild {
   children?: React.ReactNode
